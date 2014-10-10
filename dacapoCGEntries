@@ -1,0 +1,23 @@
+# the entries make the call graph correct, and also the following shared analysis correct.
+# without them, the call graph is shallow and stops at the Harness.class level due to the missed reflection calls (soot cannot model all the reflection calls).
+# format:      class             method
+
+avrora.Main                             main
+org.apache.batik.apps.rasterizer.Main   execute  
+org.eclipse.core.runtime.adaptor.EclipseStarter      run
+org.apache.fop.cli.Main                         startFOP
+org.dacapo.h2.TPCC                              iteration
+org.dacapo.luindex.Index                         main
+org.dacapo.lusearch.Search                       main
+net.sourceforge.pmd.PMD                          main
+org.sunflow.Benchmark                           kernelMain
+org.apache.catalina.startup.Bootstrap         main
+# if the above fails, try this: org.dacapo.tomcat.Control                     exec
+
+
+
+
+
+
+
+        
