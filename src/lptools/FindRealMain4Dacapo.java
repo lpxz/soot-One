@@ -158,12 +158,12 @@ public class FindRealMain4Dacapo {
 //									 }
 									 
                                     // externalized sysout. need to set cp for monitor.class									 
-//									 SootMethodRef mr = Scene.v().getMethod(
-//												"<" + monitorClass + ": void " + "methodBegin" + "(java.lang.String)>")
-//												.makeRef();
-//
-//									 units.insertBefore(Jimple.v().newInvokeStmt(
-//													Jimple.v().newStaticInvokeExpr(mr, StringConstant.v(b.getMethod().getDeclaringClass() + "." + b.getMethod().getSignature()))), s);
+									 SootMethodRef mr = Scene.v().getMethod(
+												"<" + monitorClass + ": void " + "methodBegin" + "(java.lang.String)>")
+												.makeRef();
+
+									 units.insertBefore(Jimple.v().newInvokeStmt(
+													Jimple.v().newStaticInvokeExpr(mr, StringConstant.v(b.getMethod().getDeclaringClass() + "." + b.getMethod().getSignature()))), s);
 
 									 
 									 
