@@ -280,7 +280,7 @@ public class FindRealMain4Dacapo {
 
 
 	    // helping type checker to avoid these:
-	    PhantomSupport.addPhantom("org.python.");// phantom means we do not even load the class bodies, avoid type checker errors :)
+	    PhantomSupport.addPhantom("org.python.core");// phantom means we do not even load the class bodies, avoid type checker errors :)
 	    // exclude means we load the classes but do not transform them. 
 	    // originally, phantom corresponds to only those loading failures.
 	    PhantomSupport.addPhantom("$Proxy$HASHED");

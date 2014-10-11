@@ -14,6 +14,11 @@ org.sunflow.Benchmark                           kernelMain
 org.apache.catalina.startup.Bootstrap         main
 # if the above fails, try this: org.dacapo.tomcat.Control                     exec
 
+org.python.util.jython                       main
+
+org.dacapo.xalan.XSLTBench        createWorkers # create
+org.dacapo.xalan.XSLTBench        doWork # use threads
+
 
 
 
