@@ -127,6 +127,13 @@ public class FindRealMain4Dacapo {
 							@Override
 							protected void internalTransform(Body b, String phaseName, Map options) {
 								//TODO put them into the dacapo blacklist.
+								
+//								// help eclipse
+//								if(!b.getMethod().getDeclaringClass().getName().equals("org.eclipse.core.runtime.adaptor.EclipseStarter"))
+//								{
+//									return;
+//								}
+								
 //								if(b.getMethod().getName().equals("main"))
 								{
 					
@@ -158,12 +165,12 @@ public class FindRealMain4Dacapo {
 //									 }
 									 
                                     // externalized sysout. need to set cp for monitor.class									 
-									 SootMethodRef mr = Scene.v().getMethod(
-												"<" + monitorClass + ": void " + "methodBegin" + "(java.lang.String)>")
-												.makeRef();
-
-									 units.insertBefore(Jimple.v().newInvokeStmt(
-													Jimple.v().newStaticInvokeExpr(mr, StringConstant.v(b.getMethod().getDeclaringClass() + "." + b.getMethod().getSignature()))), s);
+//									 SootMethodRef mr = Scene.v().getMethod(
+//												"<" + monitorClass + ": void " + "methodBegin" + "(java.lang.String)>")
+//												.makeRef();
+//
+//									 units.insertBefore(Jimple.v().newInvokeStmt(
+//													Jimple.v().newStaticInvokeExpr(mr, StringConstant.v(b.getMethod().getDeclaringClass() + "." + b.getMethod().getSignature()))), s);
 
 									 
 									 
@@ -171,23 +178,23 @@ public class FindRealMain4Dacapo {
 
 										
 									 	
-									 // inlined sysout(arg);
-//									 Local tmpRef = Jimple.v().newLocal("tmpRef", RefType.v("java.io.PrintStream"));
-//								     b.getLocals().add(tmpRef);
-//								     
-//
-//								     // insert "tmpRef = java.lang.System.out;" 
-//								     units.insertBefore(Jimple.v().newAssignStmt( 
-//								                      tmpRef, Jimple.v().newStaticFieldRef( 
-//								                      Scene.v().getField("<java.lang.System: java.io.PrintStream out>").makeRef())), s);
-//									
-//								     SootClass javaIoPrintStream = Scene.v().getSootClass("java.io.PrintStream");
-//								     SootMethod toCall = javaIoPrintStream.getMethod("void println(java.lang.String)");   
-//								     
-//								   
-////								     b.getMethod().getDeclaringClass() + "." + b.getMethod().getName()
-//								      units.insertBefore(Jimple.v().newInvokeStmt(
-//							                      Jimple.v().newVirtualInvokeExpr(tmpRef, toCall.makeRef(), StringConstant.v(b.getMethod().getDeclaringClass() + "." + b.getMethod().getName()))), s);
+									 // inlined sysout(arg);  for eclipse, which cannot load lptools with its own classloader
+									 Local tmpRef = Jimple.v().newLocal("tmpRef", RefType.v("java.io.PrintStream"));
+								     b.getLocals().add(tmpRef);
+								     
+
+								     // insert "tmpRef = java.lang.System.out;" 
+								     units.insertBefore(Jimple.v().newAssignStmt( 
+								                      tmpRef, Jimple.v().newStaticFieldRef( 
+								                      Scene.v().getField("<java.lang.System: java.io.PrintStream out>").makeRef())), s);
+									
+								     SootClass javaIoPrintStream = Scene.v().getSootClass("java.io.PrintStream");
+								     SootMethod toCall = javaIoPrintStream.getMethod("void println(java.lang.String)");   
+								     
+								   
+//								     b.getMethod().getDeclaringClass() + "." + b.getMethod().getName()
+								      units.insertBefore(Jimple.v().newInvokeStmt(
+							                      Jimple.v().newVirtualInvokeExpr(tmpRef, toCall.makeRef(), StringConstant.v(b.getMethod().getDeclaringClass() + "." + b.getMethod().getSignature()))), s);
 //								   
 								}
 								
