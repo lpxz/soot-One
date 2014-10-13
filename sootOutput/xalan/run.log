@@ -1,0 +1,1 @@
+nice -n 19 java -Xmx4G -cp dacapo-9.12-bach.jar:/home/lpxz/eclipse/workspacePA_icse/soot-One/classes -noverify -javaagent:pia.jar Harness --scratch-directory /tmp/dacaposcratch xalan -s small -v
