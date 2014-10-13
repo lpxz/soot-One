@@ -18,7 +18,7 @@ public class LoopBodyFinder{
 	
 	private final Stack<Object> stack = new Stack<Object>();   
 	private final Set<Set<Object>> loops = new HashSet<Set<Object>>();
-	LoopBodyFinder(Map<Object, Object> backEdges, DirectedGraph g){
+	public LoopBodyFinder(Map<Object, Object> backEdges, DirectedGraph g){
 		findLoopBody(backEdges, g);
 	}
 	private void findLoopBody(Map<Object, Object> backEdges, DirectedGraph g){

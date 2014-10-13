@@ -162,6 +162,7 @@ public class LockAllocator extends SceneTransformer
     	    while (methodsIt.hasNext())
     	    {
     	    	SootMethod method = (SootMethod) methodsIt.next();
+    	    	if(!method.getName().equals("run")) continue;
 				if(method.isConcrete())
 				{
 	    	    	Body b = method.retrieveActiveBody();

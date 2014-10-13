@@ -5,7 +5,7 @@ import java.util.*;
 import soot.jimple.toolkits.pointer.CodeBlockRWSet;
 import soot.*;
 
-class CriticalSection extends SynchronizedRegion
+public class CriticalSection extends SynchronizedRegion
 {
 	public static int nextIDNum = 1; 
 	

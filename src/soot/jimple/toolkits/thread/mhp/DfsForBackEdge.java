@@ -5,6 +5,8 @@ import soot.toolkits.graph.*;
 import soot.jimple.toolkits.thread.mhp.stmt.JPegStmt;
 import soot.tagkit.*;
 import soot.util.*;
+
+import java.io.File;
 import java.util.*;
 
 // *** USE AT YOUR OWN RISK ***
@@ -25,16 +27,14 @@ public class DfsForBackEdge{
 	private final Set<Object> black = new HashSet<Object>();
 	private final DominatorsFinder domFinder;
 	
-	DfsForBackEdge(Chain chain, DirectedGraph peg){
+	public DfsForBackEdge(Chain chain, DirectedGraph peg){
 		
 		domFinder = new DominatorsFinder(chain,peg);
 		Iterator it = chain.iterator();
 		dfs(it, peg);
-		testBackEdge();
+		//testBackEdge();
 	}
-	private void dfs(Iterator it, DirectedGraph g){
-		
-		
+	private void dfs(Iterator it, DirectedGraph g){	
 		// Visit each node
 		{
 			
@@ -58,8 +58,7 @@ public class DfsForBackEdge{
 		if (g.getSuccsOf(s).size()>0){
 			while (it.hasNext()){
 				Object succ = it.next();
-				if (!gray.contains(succ)){
-					
+				if (!gray.contains(succ)){					
 					visitNode(g, succ);
 				}
 				else{
@@ -73,6 +72,11 @@ public class DfsForBackEdge{
 							System.out.println("s is "+s);
 							System.out.println("succ is "+succ);
 							backEdges.put(s, succ);
+							
+						}
+						else {
+							System.out.println();
+							throw new RuntimeException();
 						}
 					}
 					
@@ -83,7 +87,7 @@ public class DfsForBackEdge{
 		
 	}
 	
-	protected Map<Object, Object> getBackEdges(){
+	public Map<Object, Object> getBackEdges(){
 		return backEdges;
 	}
 	

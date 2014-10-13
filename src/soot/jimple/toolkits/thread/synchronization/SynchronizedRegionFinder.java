@@ -136,7 +136,7 @@ public class SynchronizedRegionFinder extends ForwardFlowAnalysis<Unit, FlowSet>
         		UnitValueBoxPair use = (UnitValueBoxPair) uses.next();
         		Unit useStmt = use.getUnit();
         		if( !(useStmt instanceof EnterMonitorStmt) && !(useStmt instanceof ExitMonitorStmt) )
-        		{
+        		{// just decide based on the first use!
         			isPrep = false;
         			break;
         		}

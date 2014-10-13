@@ -7,6 +7,7 @@ import soot.toolkits.scalar.Pair;
 
 public class SynchronizedRegion
 {
+	public static Stmt prepOfprep = null; 
 	public Stmt prepStmt;
 	public Stmt entermonitor;
 	public Stmt beginning; // first stmt of body

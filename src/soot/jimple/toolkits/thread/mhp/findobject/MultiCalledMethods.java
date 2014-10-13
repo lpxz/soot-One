@@ -6,6 +6,7 @@ import soot.toolkits.graph.CompleteUnitGraph;
 import soot.toolkits.graph.UnitGraph;
 import soot.toolkits.scalar.FlowSet;
 import soot.util.*;
+
 import java.util.*;
 
 import soot.jimple.toolkits.callgraph.CallGraph;
@@ -24,49 +25,103 @@ import soot.jimple.toolkits.thread.mhp.pegcallgraph.PegCallGraph;
 // now used by the Transactions toolkit.
 //
 // -Richard L. Halpert, 2006-11-30
-
+// this is problematic!!!
 public class MultiCalledMethods{
 	
-	Set<SootMethod> multiCalledMethods = new HashSet<SootMethod>();
+	Set visited = new HashSet();
+	Set<Object> multiCalledMethods = new HashSet<Object>();
 	
-	MultiCalledMethods(PegCallGraph pcg, Set<SootMethod> mcm){
+	
+	
+	
+	// MrunS is the final purpose of the AllocNodeFinder
+	// MrunS= MrunS0 | McalledM_prop
+	
+	// McalledM_prop= prop(McalledM);
+	// McalledM= MrunS0|Mcalled_on_cg
+	// you see the computation flow
+	// the original soot misses the MrunS0 in computing McalledM!
+	// that is why the specjbb's wthread.start() is not judged as multiple objects...
+	MultiCalledMethods(PegCallGraph pcg, Set<Object> mcm){
+//		System.out.println("==inside MultiCaleedMethods==");
+		//checkScc(pcg);
 		multiCalledMethods = mcm;	
+		if(!(multiCalledMethods.size()==0)) 
+			throw new RuntimeException("should be true");
 		byMCalledS0(pcg);
+	//	propagate(pcg); 
 		finder1(pcg);
 		finder2(pcg);
-		propagate(pcg);
+		propagate(pcg); 
+//		test();
+		
 	}
-	
 	private void byMCalledS0(PegCallGraph pcg) {
 		Iterator it = pcg.iterator();
 		while (it.hasNext()){
+			// System.out.println("==inside it of AllocNodesFinder===");
 			SootMethod sm = (SootMethod)it.next();
 			UnitGraph graph = new CompleteUnitGraph(sm.getActiveBody());
 			CallGraph callGraph = Scene.v().getCallGraph();
 			MultiRunStatementsFinder finder = new MultiRunStatementsFinder(graph, sm, multiCalledMethods, callGraph);
+			// the above stmt will automatically update teh multicalledMethod! look atthe code 
 			FlowSet fs = finder.getMultiRunStatements();
 		}
 		
 	}
-
 	private void propagate(PegCallGraph pcg){
-		Set<SootMethod> visited = new HashSet();
-		List<SootMethod> reachable = new  ArrayList<SootMethod>();
+		/* If a method call inside a loop, this method may be called more than one,
+		 * and this is done with MultiRunStatementsFinder.
+		 * This information should be propagated through call graph.
+		 * This method implements the propagation.
+		 */
+		Iterator<Object> it = multiCalledMethods.iterator();
+	//	Set visited = new ArraySet();
+		List<Object> reachable = new  ArrayList<Object>();
 		reachable.addAll(multiCalledMethods);
 	    while(reachable.size()>=1)
 	    {
-	    	SootMethod popped = reachable.remove(0);
+	    	Object  popped  = reachable.remove(0);
 	    	if(visited.contains(popped))  continue;
-	    	if (!multiCalledMethods.contains(popped)) multiCalledMethods.add(popped);
+	    	if (!multiCalledMethods.contains(popped))  multiCalledMethods.add(popped);
 	    	visited.add(popped);
 	    	Iterator succIt = pcg.getSuccsOf(popped).iterator();
 		    while (succIt.hasNext()){
 		    	Object succ  = succIt.next();
-		    	reachable.add((SootMethod)succ);
+		    	reachable.add(succ);
 			
 		    }
 	    }
+		
+		
+//		while (it.hasNext()){
+//			Object obj = it.next();
+//			if (!visited.contains(obj)){
+//				dfsVisit(obj, pcg);
+//			}
+////			Iterator succIt = pcg.getSuccsOf(obj).iterator();
+////			while (succIt.hasNext()){
+////				if (!visited.contains(obj)){
+////					dfsVisit(obj, pcg);
+////				}
+////			}
+//		}
 	}
+//	private void dfsVisit(Object obj, PegCallGraph pcg){
+//		visited.add(obj);
+//		if (!multiCalledMethods.contains(obj))  multiCalledMethods.add(obj);
+//		Iterator succIt = pcg.getSuccsOf(obj).iterator();
+//		while (succIt.hasNext()){
+//			Object succ  = succIt.next();
+//			if (!visited.contains(succ)){
+//			dfsVisit(succ, pcg);
+//		}	
+//			
+////			if (!visited.contains(obj)){
+////				dfsVisit(obj, pcg);
+////			}
+//		}
+//	}
 	
 	//Use breadth first search to find methods are called more than once in call graph
 	private void finder1(PegCallGraph pcg){
@@ -92,7 +147,7 @@ public class MultiCalledMethods{
 					}
 					else if(clinitMethods.contains(succ))  continue;
 					else{
-						multiCalledMethods.add((SootMethod) succ);
+						multiCalledMethods.add(succ);
 					}
 				}
 				queue.remove(root);
@@ -106,12 +161,12 @@ public class MultiCalledMethods{
 	private void finder2(PegCallGraph pcg){
 		
 		pcg.trim();
-		Set<SootMethod> first = new HashSet<SootMethod>();
-		Set<SootMethod> second = new HashSet<SootMethod>();
+		Set<Object> first = new HashSet<Object>();
+		Set<Object> second = new HashSet<Object>();
 		// Visit each node
 		Iterator it = pcg.iterator();
 		while (it.hasNext()){
-			SootMethod s = (SootMethod) it.next();
+			Object s =it.next();
 			
 			if (!second.contains(s)){
 				
@@ -122,7 +177,7 @@ public class MultiCalledMethods{
 		
 	}
 	
-	private void visitNode(SootMethod node, PegCallGraph pcg, Set<SootMethod> first, Set<SootMethod> second){
+	private void visitNode(Object node, PegCallGraph pcg, Set<Object> first, Set<Object> second){
 		if (first.contains(node)){
 			second.add(node);
 			if (!multiCalledMethods.contains(node)){
@@ -133,14 +188,14 @@ public class MultiCalledMethods{
 		
 		Iterator it = pcg.getTrimSuccsOf(node).iterator();
 		while (it.hasNext()){
-			SootMethod succ = (SootMethod) it.next();
+			Object succ = it.next();
 			if (!second.contains(succ)){
 				visitNode(succ, pcg, first, second);
 			}
 		}
 	}
 	
-	public Set<SootMethod> getMultiCalledMethods(){
+	public Set<Object> getMultiCalledMethods(){
 		return multiCalledMethods;
 	}
 	

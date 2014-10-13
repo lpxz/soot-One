@@ -1,6 +1,6 @@
 package soot.jimple.toolkits.thread.synchronization;
 
-class SynchronizedRegionFlowPair
+public class SynchronizedRegionFlowPair
 {
 	// Information about the transactional region
 	public CriticalSection tn;
