@@ -1,0 +1,53 @@
+running eclipse small with classes from /home/lpxz/eclipse/workspacePA_icse/soot-One/sootOutput/eclipse...
+=======================================================
+TamiFlex Play-In Agent Version 2.0.1
+Loaded properties from /home/lpxz/work/dacapo/pia.properties
+=======================================================
+Using a single thread to drive the workload.
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: boolean isRunning()>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: org.osgi.framework.BundleContext startup(java.lang.String[],java.lang.Runnable)>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: java.lang.String[] processCommandLine(java.lang.String[])>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: void loadConfigurationInfo()>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: java.util.Properties loadProperties(java.net.URL)>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: void mergeProperties(java.util.Properties,java.util.Properties)>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: void finalizeProperties()>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: org.eclipse.osgi.framework.adaptor.FrameworkAdaptor createAdaptor()>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: void registerFrameworkShutdownHandlers()>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: void publishSplashScreen(java.lang.Runnable)>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: org.osgi.framework.Bundle[] loadBasicBundles()>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: java.lang.String[] getArrayFromList(java.lang.String,java.lang.String)>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: org.eclipse.core.runtime.adaptor.EclipseStarter$InitialBundle[] getInitialBundles(java.lang.String[])>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: java.lang.String getSysPath()>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: java.lang.String getSysPathFromURL(java.lang.String)>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: java.lang.String[] getArrayFromList(java.lang.String,java.lang.String)>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: java.net.URL searchForBundle(java.lang.String,java.lang.String)>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: java.lang.String searchFor(java.lang.String,java.lang.String)>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: java.lang.Object[] getVersionElements(java.lang.String)>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: int compareVersion(java.lang.Object[],java.lang.Object[])>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: java.net.URL makeRelative(java.net.URL,java.net.URL)>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: java.io.File makeRelative(java.io.File,java.io.File)>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: org.osgi.framework.Bundle[] getCurrentBundles(boolean)>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: void uninstallBundles(org.osgi.framework.Bundle[],org.eclipse.core.runtime.adaptor.EclipseStarter$InitialBundle[],java.util.List)>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: void installBundles(org.eclipse.core.runtime.adaptor.EclipseStarter$InitialBundle[],org.osgi.framework.Bundle[],java.util.ArrayList,java.util.ArrayList,java.util.List)>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: org.osgi.framework.Bundle getBundleByLocation(java.lang.String,org.osgi.framework.Bundle[])>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: boolean refreshPackages(org.osgi.framework.Bundle[])>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: void updateSplash(org.eclipse.core.runtime.internal.adaptor.Semaphore,org.eclipse.core.runtime.adaptor.EclipseStarter$StartupEventListener)>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: boolean isForcedRestart()>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: void startBundles(org.osgi.framework.Bundle[],org.osgi.framework.Bundle[])>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: void startBundle(org.osgi.framework.Bundle,int)>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: int getStartLevel()>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: void setStartLevel(int)>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: void updateSplash(org.eclipse.core.runtime.internal.adaptor.Semaphore,org.eclipse.core.runtime.adaptor.EclipseStarter$StartupEventListener)>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: void ensureBundlesActive(org.osgi.framework.Bundle[])>
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: java.lang.Object run(java.lang.Object)>
+Unzip workspace 
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: java.lang.Object run(java.lang.Object)>
+Initialize workspace ...................
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: java.lang.Object run(java.lang.Object)>
+Delete workspace 
+org.eclipse.core.runtime.adaptor.EclipseStarter.<org.eclipse.core.runtime.adaptor.EclipseStarter: void shutdown()>
+
+=======================================================
+TamiFlex Play-In Agent Version 2.0.1
+Replaced 2129 out of 2210 classes.
+=======================================================
